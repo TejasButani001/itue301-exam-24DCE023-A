@@ -1,7 +1,7 @@
 # 🏥 ITUE301 — Advanced Web Development Frameworks
 ## Open-Book Practical Examination — Set A: Hospital Appointment System
 
-**Student Name:** Tejas Patel  
+**Student Name:** Tejas Butani  
 **Roll Number:** 24DCE023  
 **Batch:** A  
 **Application Name:** MedCare Plus — Hospital Appointment System  
