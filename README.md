@@ -1,70 +1,122 @@
-# Hospital Appointment System (MedCare Plus)
+# 🏥 ITUE301 — Advanced Web Development Frameworks
+## Open-Book Practical Examination — Set A: Hospital Appointment System
 
-ITUE301 — Advanced Web Development Frameworks  
-Open-Book Practical Examination — Set A
+**Student Name:** Tejas Patel  
+**Roll Number:** 24DCE023  
+**Batch:** A  
+**Application Name:** MedCare Plus — Hospital Appointment System  
+**Tech Stack:** React.js + Express.js + MongoDB (Mongoose)
 
 ---
 
 ## 📌 Project Overview
-MedCare Plus is a full-stack Hospital Appointment System built using **React**, **Express.js**, and **MongoDB (Mongoose)**. It allows patients to view specialist doctors, schedule appointments, track status (`confirmed`, `pending`, `cancelled`), and manage healthcare records.
+**MedCare Plus** is a full-stack Hospital Appointment System built for managing doctors, patients, and healthcare appointments. The project is implemented using modern web development practices following a 5-task modular architecture.
 
 ---
 
-## 🚀 Setup & Execution Instructions
+## 📋 Summary of Practical Examination Tasks
 
-### 1. Environment Configuration (`.env`)
-Create a `.env` file in the root directory (refer to `.env.example`):
+| Task # | Exam Task Description | Status | Key Features Implemented |
+| :--- | :--- | :---: | :--- |
+| **Task 1** | **React Component Architecture** | ✅ **Done** | Built `HomePage`, `DoctorsPage`, `BookingPage`, `Navbar`, and reusable `AppointmentCard` component (accepts 5 props: `patientName`, `doctorName`, `date`, `timeSlot`, `status` with dynamic badge styling for `confirmed`, `pending`, `cancelled`). |
+| **Task 2** | **React Routing & State Management** | ✅ **Done** | Configured `BrowserRouter`, `Routes`, `Route`, and `<Link>` for navigation without full-page reloads. Created an interactive appointment form in `BookingPage` using `useState` with a live form state preview. |
+| **Task 3** | **Express REST API + Middleware** | ✅ **Done** | Built Express backend with endpoints `GET /api/v1/doctors`, `GET /api/v1/appointments`, `POST /api/v1/appointments`. Created global `requestLogger` middleware `[METHOD] [PATH] [TIMESTAMP]` and global error-handling middleware returning structured JSON with HTTP status codes (200, 201, 500). |
+| **Task 4** | **REST API Consumption in React** | ✅ **Done** | Consumed Express API in `DoctorsPage` using native `fetch()` inside `useEffect()`. Maintained 3 state variables (`data`, `loading`, `error`) and displayed Doctor Name, Specialisation, and Availability status (`Yes`/`No`). |
+| **Task 5** | **MongoDB + Mongoose Schema & Validation** | ✅ **Done** | Designed Mongoose schemas for `Patient` (unique email, blood group enum), `Doctor` (default availability `true`), and `Appointment` (Mongoose ObjectId refs, maxlength 300). Handled Mongoose validation errors gracefully returning custom JSON error responses. |
+
+---
+
+## 🚀 How to Run the Project
+
+### 1. Environment Setup (`.env`)
+Create a `.env` file in the root folder (refer to `.env.example`):
 ```env
 MONGO_URI=mongodb://127.0.0.1:27017/hospital_db
 PORT=5000
 ```
 
-### 2. Backend Setup & Run Command
-Navigate to the `backend/` directory:
+### 2. Run Backend (Express Server)
+Open a terminal window and run:
 ```bash
 cd backend
 npm install
 node server.js
-# OR
-npm start
 ```
-The Express backend server runs on `http://localhost:5000`.
+> 🟢 **Backend running on:** `http://localhost:5000`
 
-### 3. Frontend Setup & Run Command
-Navigate to the `frontend/` directory:
+### 3. Run Frontend (React Application)
+Open a second terminal window and run:
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-The React frontend application runs on `http://localhost:5173`.
+> 🟢 **Frontend running on:** `http://localhost:5173`
 
-### 4. MongoDB Setup
-1. Start local MongoDB instance or use MongoDB Atlas.
-2. Update `MONGO_URI` in `.env` with your MongoDB connection string.
-3. Database schemas for `Patient`, `Doctor`, and `Appointment` are automatically initialized by Mongoose upon backend server start.
-
----
-
-## 🛠️ Data Entities & API Endpoints
-
-### Data Entities
-- **Patient**: `name`, `email` (unique), `phone`, `bloodGroup` (Enum), `age`
-- **Doctor**: `name`, `email`, `specialisation`, `available` (Boolean)
-- **Appointment**: `patientId` (ref), `doctorId` (ref), `date`, `timeSlot`, `status` (`pending`, `confirmed`, `cancelled`), `reason` (max 300 chars)
-
-### REST API Endpoints
-- `GET /api/v1/doctors` — Returns all available specialist doctors (HTTP 200)
-- `GET /api/v1/appointments` — Returns all appointments (HTTP 200)
-- `POST /api/v1/appointments` — Creates a new appointment (HTTP 201)
-- `POST /api/v1/db/patients` — Create patient in MongoDB with schema validation
-- `POST /api/v1/test-validation` — Test Mongoose schema validation failure handling (HTTP 400)
+### 4. Database Seeding & Mongoose Test Script (Optional)
+To populate sample doctors and test MongoDB schema validations:
+```bash
+cd backend
+node seed.js       # Seeds 10 specialist doctors and sample records into MongoDB
+node mongoTest.js  # Tests Mongoose connection, references, and validation error handling
+```
 
 ---
 
-## 📋 Task Highlights
-- **Task 1 (React Components)**: Modular architecture (`HomePage`, `DoctorsPage`, `BookingPage`, `AppointmentCard`, `Navbar`). Status badges dynamically colored based on props.
-- **Task 2 (Routing & State)**: React Router links navigation and interactive appointment booking form with live state preview.
-- **Task 3 (Express & Middleware)**: Custom `requestLogger` middleware logging `[METHOD] [PATH] [TIMESTAMP]`, CORS support, and global error handling returning structured JSON responses.
-- **Task 4 (API Consumption)**: Asynchronous `useEffect` fetching from Express backend in `DoctorsPage` with `data`, `loading`, and `error` state management.
-- **Task 5 (MongoDB Validation)**: Mongoose schemas with ObjectId references, enums, required fields, and structured error responses on validation failures.
+## 🔗 REST API Endpoint Reference
+
+| Method | Endpoint | Purpose | HTTP Status |
+| :--- | :--- | :--- | :---: |
+| `GET` | `/api/v1/doctors` | Retrieve all specialist doctors | `200 OK` |
+| `GET` | `/api/v1/appointments` | Retrieve all appointments | `200 OK` |
+| `POST` | `/api/v1/appointments` | Create a new appointment | `201 Created` |
+| `GET` | `/api/v1/appointments/:id` | Retrieve single appointment by ID | `200 OK` |
+| `PUT` | `/api/v1/appointments/:id` | Update appointment details | `200 OK` |
+| `DELETE` | `/api/v1/appointments/:id` | Delete appointment by ID | `200 OK` |
+| `POST` | `/api/v1/test-validation` | Test Mongoose schema validation failure response | `400 Bad Request` |
+
+---
+
+## 📂 Repository Structure
+
+```text
+itue301-exam-24DCE023-A/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx           # SPA Navigation Links
+│   │   │   └── AppointmentCard.jsx  # Appointment Card Component (5 Props)
+│   │   ├── pages/
+│   │   │   ├── HomePage.jsx         # System Welcome Page
+│   │   │   ├── DoctorsPage.jsx      # API Data Fetching with useEffect (3 States)
+│   │   │   └── BookingPage.jsx      # Appointment Form & Live useState Preview
+│   │   ├── App.jsx                  # React Router Route Configuration
+│   │   ├── main.jsx                 # BrowserRouter Provider Wrapper
+│   │   └── index.css                # Styling stylesheet
+│   └── package.json
+│
+├── backend/
+│   ├── models/
+│   │   ├── Patient.js               # Patient Mongoose Schema
+│   │   ├── Doctor.js                # Doctor Mongoose Schema
+│   │   └── Appointment.js           # Appointment Mongoose Schema
+│   ├── server.js                    # Express Server & Middleware
+│   ├── seed.js                      # MongoDB Data Seeding Script
+│   ├── mongoTest.js                 # Task 5 Mongoose Connection & Validation Test
+│   └── package.json
+│
+├── .env                             # Local Environment Variables (Ignored)
+├── .env.example                     # Environment Template
+├── .gitignore                       # Git Ignore Rules
+└── README.md                        # Documentation & Execution Guide
+```
+
+---
+
+## 📷 Report / Evidence Screenshot Guide
+
+For the exam report submission (**`24DCE023_SetA_Report.pdf`**):
+1. **Screenshot 1 — React Application**: Open `http://localhost:5173/doctors` displaying loaded doctor cards.
+2. **Screenshot 2 — REST API**: Open Postman or browser showing `GET http://localhost:5000/api/v1/doctors` (200 OK).
+3. **Screenshot 3 — MongoDB**: Open MongoDB Compass displaying `hospital_db` database and `patients` / `appointments` collection documents.
