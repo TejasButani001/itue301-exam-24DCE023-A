@@ -44,7 +44,7 @@ async function seedDatabase() {
         });
 
         const patient2 = await Patient.create({
-            name: "Tejas Patel",
+            name: "Tejas Butani",
             email: "tejas@example.com",
             phone: "+91-9123456789",
             bloodGroup: "B+",
