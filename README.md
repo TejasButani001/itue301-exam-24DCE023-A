@@ -1,9 +1,10 @@
 # 🏥 ITUE301 — Advanced Web Development Frameworks
 ## Open-Book Practical Examination — Set A: Hospital Appointment System
 
-**Student Name:** Tejas Butani  
+**Student Name:** [Tejas Butani](https://github.com/TejasButani001)  
 **Roll Number:** 24DCE023  
 **Batch:** A  
+**GitHub Repository:** [https://github.com/TejasButani001/itue301-exam-24DCE023-A](https://github.com/TejasButani001/itue301-exam-24DCE023-A)  
 **Application Name:** MedCare Plus — Hospital Appointment System  
 **Tech Stack:** React.js + Express.js + MongoDB (Mongoose)
 
